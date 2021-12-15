@@ -1,6 +1,6 @@
 INSERT MANDATORY GIF
 
-# Project Title
+# Whatodo
 
 Text about the project and why it exists. This would also be a great place to link the project online.
 
