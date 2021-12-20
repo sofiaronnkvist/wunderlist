@@ -5,6 +5,10 @@
 
     <h1>Register</h1>
 
+    <?php if (errorMessages()) : ?>
+        <p><?php echo $_SESSION['messages']['registration']; ?></p>
+    <?php endif; ?>
+
     <form action="app/users/register.php" method="post">
         <div class="mb-3">
             <label for="username">Username</label>

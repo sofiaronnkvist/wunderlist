@@ -7,7 +7,8 @@ require __DIR__ . '/../autoload.php';
 // In this file we register a new user.
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
-    $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
+    // $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
+    $username = trim(htmlspecialchars($_POST['username']));
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -18,9 +19,9 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     } catch (Exception $e) {
-        $formHandlerErrors[] = "There is an error processing uploaded image";
-        $_SESSION['errors'][] = "You need to fill in all fields.";
-        redirect('/login.php');
+        // $formHandlerErrors[] = "There is an error processing uploaded image";
+        $_SESSION['messages']['registration'];
+        redirect('/register.php');
     }
 
     // $newUser = $statement->fetch(PDO::FETCH_ASSOC);
