@@ -10,7 +10,7 @@ function redirect(string $path)
 
 function isUserLoggedIn()
 {
-    if (isset($_SESSION['user']));
+    isset($_SESSION['user']);
 }
 
 // if (isUserLoggedIn());
@@ -23,7 +23,7 @@ $_SESSION['messages'][] = [
 
 function errorMessages()
 {
-    if (isset($_SESSION['messages']));
+    isset($_SESSION['messages']);
 }
 
 // if (errorMessages());

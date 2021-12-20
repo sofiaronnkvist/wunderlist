@@ -5,7 +5,7 @@
 
     <h1>Register</h1>
 
-    <?php if (errorMessages()) : ?>
+    <?php if (errorMessages('registration')) : ?>
         <p><?php echo $_SESSION['messages']['registration']; ?></p>
     <?php endif; ?>
 
