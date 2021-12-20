@@ -7,8 +7,7 @@ require __DIR__ . '/../autoload.php';
 // In this file we register a new user.
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
-    // $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
-    $username = trim(htmlspecialchars($_POST['username']));
+    $username = trim($_POST['username']);
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -19,19 +18,20 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     } catch (Exception $e) {
-        // $formHandlerErrors[] = "There is an error processing uploaded image";
         $_SESSION['messages']['registration'];
         redirect('/register.php');
     }
 
-    // $newUser = $statement->fetch(PDO::FETCH_ASSOC);
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
 
-    // if (!$newUser) {
-    //     redirect('/login.php');
-    // }
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // if (password_verify($_POST['password'], $user['password'])) {
-    //     unset($user['password']);
-    //     $_SESSION['user'] = $user;
-    // }
+    if (password_verify($_POST['password'], $user['password'])) {
+        unset($user['password']);
+        $_SESSION['user'] = $user;
+    }
 }
+
+redirect('/');

@@ -10,7 +10,8 @@ function redirect(string $path)
 
 function isUserLoggedIn()
 {
-    isset($_SESSION['user']);
+    $loggedInUser = isset($_SESSION['user']);
+    return $loggedInUser;
 }
 
 // if (isUserLoggedIn());
@@ -27,3 +28,13 @@ function errorMessages()
 }
 
 // if (errorMessages());
+
+// function checkEmail($database, $email)
+// {
+//     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+//     $statement->bindParam(':email', $email, PDO::PARAM_STR);
+//     $statement->execute();
+
+//     $user = $statement->fetch(PDO::FETCH_ASSOC);
+//     return $user;
+// }

@@ -5,8 +5,8 @@
     <h1><?php echo $config['title']; ?></h1>
     <p>This is the home page.</p>
 
-    <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?php echo $_SESSION['user']['username']; ?>!</p>
+    <?php if (isUserLoggedIn()) : ?>
+        <p>Welcome, <?php echo htmlspecialchars($_SESSION['user']['username']); ?>!</p>
     <?php endif; ?>
 </article>
 

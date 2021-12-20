@@ -6,7 +6,7 @@
     <h1>Register</h1>
 
     <?php if (errorMessages('registration')) : ?>
-        <p><?php echo $_SESSION['messages']['registration']; ?></p>
+        <p><?= $_SESSION['messages']['registration']; ?></p>
     <?php endif; ?>
 
     <form action="app/users/register.php" method="post">
