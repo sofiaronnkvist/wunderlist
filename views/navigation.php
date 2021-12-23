@@ -11,7 +11,15 @@
         </li>
 
         <li class="nav-item">
-            <?php if (isset($_SESSION['user'])) : ?>
+            <?php if (isUserLoggedIn()) : ?>
+                <a class="nav-link" href="/profile.php">Profile</a>
+            <?php else : ?>
+                <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
+            <?php endif; ?>
+        </li>
+
+        <li class="nav-item">
+            <?php if (isUserLoggedIn()) : ?>
                 <a class="nav-link" href="/app/users/logout.php">Logout</a>
             <?php else : ?>
                 <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>

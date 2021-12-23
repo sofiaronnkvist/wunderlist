@@ -6,7 +6,7 @@
     <p>This is the home page.</p>
 
     <?php if (isUserLoggedIn()) : ?>
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['user']['username']); ?>!</p>
+        <p>Welcome, <?= htmlspecialchars($_SESSION['user']['username']); ?>!</p>
     <?php endif; ?>
 </article>
 

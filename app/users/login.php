@@ -16,10 +16,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     // checkEmail($database, $email);
-    //Hur får jag funktionen att ge tillbaka $user så att detta funkar?????????
+    //Hur får jag funktionen att ge tillbaka $user = true så att detta funkar?????????
 
     if (!$user) {
         redirect('/login.php');
+        // $_SESSION['messages']['login'];
     }
 
     if (password_verify($_POST['password'], $user['password'])) {

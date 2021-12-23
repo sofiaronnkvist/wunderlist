@@ -8,10 +8,9 @@ function redirect(string $path)
     exit;
 }
 
-function isUserLoggedIn()
+function isUserLoggedIn(): bool
 {
-    $loggedInUser = isset($_SESSION['user']);
-    return $loggedInUser;
+    return isset($_SESSION['user']);
 }
 
 // if (isUserLoggedIn());
@@ -19,7 +18,7 @@ function isUserLoggedIn()
 
 $_SESSION['messages'][] = [
     'registration' => 'The username or email is already in use.',
-    'type' => 'error',
+    'login' => 'error',
 ];
 
 function errorMessages()
@@ -29,7 +28,7 @@ function errorMessages()
 
 // if (errorMessages());
 
-// function checkEmail($database, $email)
+// function checkEmail($database, $email): array
 // {
 //     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
 //     $statement->bindParam(':email', $email, PDO::PARAM_STR);
