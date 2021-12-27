@@ -11,6 +11,25 @@
     </div>
 </section>
 <section>
+    <h2>Change account details</h2>
+    <form action="app/users/profile.php" method="post">
+
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" id="email" placeholder="hello@wunderlist.com" required>
+            <small class="form-text">Type in your new email adress.</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" required>
+            <small class="form-text">Type in your new password.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+</section>
+<section>
     <h2>Upload an avatar</h2>
     <form action="/app/users/avatar.php" method="post" enctype="multipart/form-data">
         <div>
