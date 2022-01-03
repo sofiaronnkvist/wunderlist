@@ -18,6 +18,9 @@
         <ul>
             <?php foreach (getTasks($database) as $task) : ?>
                 <li><?= htmlspecialchars($task['task_title']); ?></li>
+                <form action="/app/tasks/completed.php" method="post">
+                    <input type="checkbox" name="completed" id="completed" value="<?= date("Y-m-d") ?>">
+                </form>
                 <ul>
                     <li><?= htmlspecialchars($task['task_description']) ?></li>
                     <form action="/app/tasks/delete.php" method="post">
@@ -58,7 +61,7 @@
                     <option value="">Choose...</option>
                     <?php foreach (getLists($database) as $list) : ?>
                         <option value="<?= $list['id']; ?>">
-                            <?= $list['list_title']; ?>
+                            <?= htmlspecialchars($list['list_title']); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
