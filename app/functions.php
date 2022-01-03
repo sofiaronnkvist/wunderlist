@@ -65,3 +65,13 @@ function getTodaysTasks($database): array
 
     return $todaysTasks;
 }
+
+function tasksInList($database): array
+{
+    $userId = $_SESSION['user']['id'];
+    $statement = $database->query("SELECT * FROM tasks INNER JOIN lists
+    ON tasks.list_id = lists.id WHERE tasks.user_id = $userId");
+    $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $tasks;
+}

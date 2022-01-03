@@ -32,6 +32,9 @@
                 <li><?= htmlspecialchars($today['task_title']); ?></li>
                 <ul>
                     <li><?= htmlspecialchars($today['task_description']) ?></li>
+                    <form action="/app/tasks/delete.php" method="post">
+                        <button name="delete-task" type="submit" class="btn btn-primary" value="<?= $task['id'] ?>">Delete</button>
+                    </form>
                 </ul>
             <?php endforeach; ?>
         </ul>
@@ -71,6 +74,19 @@
             <form action="/app/lists/delete.php" method="post">
                 <button name="delete-list" type="submit" class="btn btn-primary" value="<?= $list['id'] ?>">Delete</button>
             </form>
+            <ul>
+                <?php foreach (tasksInList($database) as $task) : ?>
+                    <?php if ($task['list_id'] === $list['id']) : ?>
+                        <li><?= htmlspecialchars($task['task_title']); ?></li>
+                        <ul>
+                            <li><?= htmlspecialchars($task['task_description']) ?></li>
+                            <form action="/app/tasks/delete.php" method="post">
+                                <button name="delete-task" type="submit" class="btn btn-primary" value="<?= $task['id'] ?>">Delete</button>
+                            </form>
+                        </ul>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
         <?php endforeach; ?>
     </ul>
     <h3>Add a list</h3>
