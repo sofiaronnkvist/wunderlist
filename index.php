@@ -20,6 +20,9 @@
                 <li><?= htmlspecialchars($task['task_title']); ?></li>
                 <ul>
                     <li><?= htmlspecialchars($task['task_description']) ?></li>
+                    <form action="/app/tasks/delete.php" method="post">
+                        <button name="delete-task" type="submit" class="btn btn-primary" value="<?= $task['id'] ?>">Delete</button>
+                    </form>
                 </ul>
             <?php endforeach; ?>
         </ul>
@@ -65,6 +68,9 @@
     <ul>
         <?php foreach (getLists($database) as $list) : ?>
             <li><?= htmlspecialchars($list['list_title']); ?></li>
+            <form action="/app/lists/delete.php" method="post">
+                <button name="delete-list" type="submit" class="btn btn-primary" value="<?= $list['id'] ?>">Delete</button>
+            </form>
         <?php endforeach; ?>
     </ul>
     <h3>Add a list</h3>
