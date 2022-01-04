@@ -19,7 +19,7 @@
             <?php foreach (getTasks($database) as $task) : ?>
                 <li><?= htmlspecialchars($task['task_title']); ?></li>
                 <form action="/app/tasks/completed.php" method="post">
-                    <input type="checkbox" name="completed" id="completed" value="<?= date("Y-m-d") ?>">
+                    <input type="checkbox" name="completed" id="completed">
                 </form>
                 <ul>
                     <li><?= htmlspecialchars($task['task_description']) ?></li>
@@ -33,6 +33,9 @@
         <ul>
             <?php foreach (getTodaysTasks($database) as $today) : ?>
                 <li><?= htmlspecialchars($today['task_title']); ?></li>
+                <form action="/app/tasks/completed.php" method="post">
+                    <input type="checkbox" name="completed" id="completed" class="checkbox" value="<?= date("Y-m-d") ?>">
+                </form>
                 <ul>
                     <li><?= htmlspecialchars($today['task_description']) ?></li>
                     <form action="/app/tasks/delete.php" method="post">
