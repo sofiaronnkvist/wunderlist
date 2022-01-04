@@ -19,7 +19,7 @@
             <?php foreach (getTasks($database) as $task) : ?>
                 <li><?= htmlspecialchars($task['task_title']); ?></li>
                 <form action="/app/tasks/completed.php" method="post">
-                    <input type="checkbox" name="completed" id="completed">
+                    <input type="checkbox" name="completed" id="completed" class="checkbox">
                 </form>
                 <ul>
                     <li><?= htmlspecialchars($task['task_description']) ?></li>
