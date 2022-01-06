@@ -38,6 +38,17 @@ function errorMessages()
 //     return $user;
 // }
 
+function getListName($database, $taskId): array
+{
+    $statement = $database->prepare('SELECT list_title FROM lists INNER JOIN tasks ON tasks.list_id = lists.id WHERE tasks.id = :id');
+    $statement->bindParam(':id', $taskId, PDO::PARAM_INT);
+    $statement->execute();
+
+    $listTitle = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $listTitle;
+}
+
 
 function getLists($database): array
 {
