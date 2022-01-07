@@ -13,9 +13,6 @@ function isUserLoggedIn(): bool
     return isset($_SESSION['user']);
 }
 
-// if (isUserLoggedIn());
-
-
 $_SESSION['messages'][] = [
     'registration' => 'The username or email is already in use.',
     'login' => 'error',
@@ -87,20 +84,11 @@ function tasksInList($database): array
     return $tasks;
 }
 
-function json_response(array $data = [], int $statusCode = 200): string
-{
-    http_response_code($statusCode);
-
-    header('Content-Type: application/json');
-
-    return json_encode($data);
-}
-
 function isChecked($task): bool
 {
-    if ($task['completed_at'] != NULL) {
-        return true;
-    } else {
+    if ($task['completed_at'] === NULL) {
         return false;
+    } else {
+        return true;
     }
 }

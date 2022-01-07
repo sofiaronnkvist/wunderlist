@@ -8,9 +8,6 @@ require __DIR__ . '/../autoload.php';
 
 
 if (isset($_POST['update-task'], $_POST['task-title'], $_POST['task-description'], $_POST['task-deadline'], $_POST['task-list'])) {
-    // if ($_POST['task-list'] === '') {
-    //     $_POST['task-list'] = 'NULL';
-    // }
 
     $taskTitle = trim($_POST['task-title']);
     $taskDescription = trim($_POST['task-description']);
@@ -18,6 +15,10 @@ if (isset($_POST['update-task'], $_POST['task-title'], $_POST['task-description'
     $taskList = $_POST['task-list'];
     $userId = $_SESSION['user']['id'];
     $taskId =  $_POST['update-task'];
+
+    if ($taskList === '') {
+        $taskList = NULL;
+    }
 
     $statement = $database->prepare('UPDATE tasks SET task_title = :task_title, task_description = :task_description, deadline_at = :deadline_at, list_id = :list_id, user_id = :user_id WHERE id = :id');
     $statement->bindParam(':task_title', $taskTitle, PDO::PARAM_STR);

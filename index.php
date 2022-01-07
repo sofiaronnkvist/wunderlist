@@ -18,7 +18,7 @@
         <ul>
             <?php foreach (getTasks($database) as $task) : ?>
                 <li><?= htmlspecialchars($task['task_title']); ?></li>
-                <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" checked="<?= isChecked($task) ?>">
+                <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" data-set="<?= isChecked($task) ?>">
                 <ul>
                     <li><?= htmlspecialchars($task['task_description']) ?></li>
                     <p><?= htmlspecialchars($task['deadline_at']); ?></p>

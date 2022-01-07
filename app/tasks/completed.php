@@ -13,8 +13,4 @@ if (isset($_POST['completed'])) {
     $statement->bindParam(':id', $taskId, PDO::PARAM_INT);
 
     $statement->execute();
-
-    echo json_response(['completed']);
 }
-
-// redirect('/');
