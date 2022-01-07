@@ -12,6 +12,15 @@
 </section>
 <section>
     <h2>Change account details</h2>
+    <h3>Choose an avatar</h3>
+    <form action="/app/users/avatar.php" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="avatar">Choose a PNG image to upload</label>
+            <input type="file" name="avatar" id="avatar" accept=".png" required>
+        </div>
+
+        <button type="submit">Upload</button>
+    </form>
     <form action="app/users/profile.php" method="post">
 
         <div class="mb-3">
@@ -28,17 +37,13 @@
 
         <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
-</section>
-<section>
-    <h2>Upload an avatar</h2>
-    <form action="/app/users/avatar.php" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="avatar">Choose a PNG image to upload</label>
-            <input type="file" name="avatar" id="avatar" accept=".png" required>
-        </div>
-
-        <button type="submit">Upload</button>
-    </form>
+    <div>
+        <h3>Delete your account</h3>
+        <p>If you delete your account, all of your information will be deleted along with lists and tasks.</p>
+        <form action="/app/users/delete.php" method="post">
+            <button name="delete-user" type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
 </section>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

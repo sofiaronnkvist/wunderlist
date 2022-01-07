@@ -18,7 +18,7 @@ if (isset($_FILES['avatar'])) {
     $statement->bindParam(':avatar', $avatarName, PDO::PARAM_STR);
     $statement->execute();
 
-    $_SESSION['user']['avatar'] = $userAvatar;
+    $avatarName = $_SESSION['user']['avatar'];
 }
 
 redirect('/profile.php');

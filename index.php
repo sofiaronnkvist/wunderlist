@@ -64,9 +64,7 @@
         <ul>
             <?php foreach (getTodaysTasks($database) as $today) : ?>
                 <li><?= htmlspecialchars($today['task_title']); ?></li>
-                <form action="/app/tasks/completed.php" method="post">
-                    <input type="checkbox" name="completed" id="completed" class="checkbox" value="<?= $today['id'] ?>">
-                </form>
+                <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $today['id'] ?>" data-set="<?= isChecked($today) ?>">
                 <ul>
                     <li><?= htmlspecialchars($today['task_description']) ?></li>
                     <p><?= htmlspecialchars($task['deadline_at']); ?></p>
@@ -156,9 +154,7 @@
                 <?php foreach (tasksInList($database) as $task) : ?>
                     <?php if ($list['id'] === $task['list_id']) : ?>
                         <li><?= htmlspecialchars($task['task_title']); ?></li>
-                        <form action="/app/tasks/completed.php" method="post">
-                            <input type="checkbox" name="completed" id="completed" class="checkbox" value="<?= $task['id'] ?>">
-                        </form>
+                        <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" data-set="<?= isChecked($task) ?>">
                         <ul>
                             <li><?= htmlspecialchars($task['task_description']) ?></li>
                             <p><?= htmlspecialchars($task['deadline_at']); ?></p>
