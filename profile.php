@@ -7,7 +7,15 @@
         <p>Username: <?= htmlspecialchars($_SESSION['user']['username']); ?></p>
         <p>Email: <?= htmlspecialchars($_SESSION['user']['email']); ?></p>
         <p>Avatar:</p>
-        <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="Avatar.">
+        <?php if ($_SESSION['user']['avatar']) : ?>
+            <div>
+                <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="Avatar.">
+            </div>
+        <?php else : ?>
+            <div>
+                <img src="/uploads/placeholder.png" alt="Placeholder avatar image.">
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 <section>

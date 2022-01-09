@@ -5,8 +5,13 @@
 
     <h1>Register</h1>
 
-    <?php if (errorMessages('registration')) : ?>
-        <p><?= $_SESSION['messages']['registration']; ?></p>
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
+            <div>
+                <?= $error; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['errors']) ?>
     <?php endif; ?>
 
     <form action="app/users/register.php" method="post">

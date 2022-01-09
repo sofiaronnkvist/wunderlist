@@ -13,14 +13,14 @@ function isUserLoggedIn(): bool
     return isset($_SESSION['user']);
 }
 
-$_SESSION['messages'][] = [
-    'registration' => 'The username or email is already in use.',
-    'login' => 'error',
-];
+function completeMessages()
+{
+    isset($_SESSION['messages']);
+}
 
 function errorMessages()
 {
-    isset($_SESSION['messages']);
+    isset($_SESSION['errors']);
 }
 
 // if (errorMessages());
@@ -59,7 +59,7 @@ function getLists($database): array
 function getTasks($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId");
+    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId ORDER BY completed_at ASC");
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $tasks;
@@ -68,7 +68,7 @@ function getTasks($database): array
 function getTodaysTasks($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId AND deadline_at = DATE()");
+    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId AND deadline_at = DATE() ORDER BY completed_at ASC");
     $todaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $todaysTasks;
@@ -78,7 +78,7 @@ function tasksInList($database): array
 {
     $userId = $_SESSION['user']['id'];
     $statement = $database->query("SELECT * FROM tasks INNER JOIN lists
-    ON tasks.list_id = lists.id WHERE tasks.user_id = $userId");
+    ON tasks.list_id = lists.id WHERE tasks.user_id = $userId ORDER BY tasks.completed_at ASC");
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $tasks;

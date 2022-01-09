@@ -7,6 +7,11 @@ require __DIR__ . '/../autoload.php';
 // In this file we register a new user.
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
+    if (strlen($_POST['password']) < 16) {
+        $_SESSION['errors'][] = 'The password needs to be 16 charachters or longer.';
+        redirect('/register.php');
+    }
+
     $username = trim($_POST['username']);
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
