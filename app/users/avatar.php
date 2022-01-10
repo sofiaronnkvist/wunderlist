@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_FILES['avatar'])) {
     $avatarFile = $_FILES['avatar'];
-    $avatarName = date('ymd') . '-' . $avatarFile['name'];
+    $avatarName = date('ymd') . '-' . ($avatarFile['name']);
 
     $path = __DIR__ . '/../../uploads/';
     $destination = $path . $avatarName;
@@ -18,7 +18,7 @@ if (isset($_FILES['avatar'])) {
     $statement->bindParam(':avatar', $avatarName, PDO::PARAM_STR);
     $statement->execute();
 
-    $avatarName = $_SESSION['user']['avatar'];
+    $_SESSION['user']['avatar'] = $avatarName;
 }
 
 redirect('/profile.php');

@@ -7,7 +7,7 @@
         <p>Username: <?= htmlspecialchars($_SESSION['user']['username']); ?></p>
         <p>Email: <?= htmlspecialchars($_SESSION['user']['email']); ?></p>
         <p>Avatar:</p>
-        <?php if (isset($_SESSION['user']['avatar'])) : ?>
+        <?php if ($_SESSION['user']['avatar'] != null) : ?>
             <div>
                 <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="Avatar.">
             </div>
