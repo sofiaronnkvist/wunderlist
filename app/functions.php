@@ -13,16 +13,6 @@ function isUserLoggedIn(): bool
     return isset($_SESSION['user']);
 }
 
-function completeMessages()
-{
-    isset($_SESSION['messages']);
-}
-
-function errorMessages()
-{
-    isset($_SESSION['errors']);
-}
-
 // if (errorMessages());
 
 // function checkEmail($database, $email): array

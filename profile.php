@@ -7,7 +7,7 @@
         <p>Username: <?= htmlspecialchars($_SESSION['user']['username']); ?></p>
         <p>Email: <?= htmlspecialchars($_SESSION['user']['email']); ?></p>
         <p>Avatar:</p>
-        <?php if ($_SESSION['user']['avatar']) : ?>
+        <?php if (isset($_SESSION['user']['avatar'])) : ?>
             <div>
                 <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="Avatar.">
             </div>
@@ -21,7 +21,7 @@
 <section>
     <h2>Change account details</h2>
     <h3>Choose an avatar</h3>
-    <form action="/app/users/avatar.php" method="post" enctype="multipart/form-data">
+    <form action=" /app/users/avatar.php" method="post" enctype="multipart/form-data">
         <div>
             <label for="avatar">Choose a PNG image to upload</label>
             <input type="file" name="avatar" id="avatar" accept=".png" required>
