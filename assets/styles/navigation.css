@@ -1,0 +1,138 @@
+/* Navigation */
+
+.nav-logo {
+  font-family: 'Rock Salt', cursive;
+}
+
+nav li {
+  list-style: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  height: 88px;
+  background-color: #fff;
+  width: 100vw;
+  border-bottom: 1px solid #000;
+}
+
+.nav-item input {
+  height: 48px;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 34.67px;
+  height: 2px;
+  margin: 9px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: 50px;
+  gap: 50px;
+}
+
+.nav-link {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link:hover {
+  color: rgb(179, 177, 177);
+}
+
+.nav-logo {
+  height: 70px;
+}
+
+.navbar a {
+  height: 70px;
+}
+
+/********* Navigation *********/
+
+@media only screen and (max-height: 600px) {
+  .nav-item {
+    margin: 0.6rem;
+  }
+}
+
+@media only screen and (max-height: 650px) {
+  .nav-item {
+    margin: 1rem;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 64px;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    gap: 0px;
+  }
+  .nav-menu.active {
+    left: 0;
+    height: 100vh;
+    justify-content: flex-start;
+  }
+  .nav-item {
+    margin: 2.2rem 0;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+  .navbar {
+    height: 64px;
+  }
+  .nav-logo {
+    height: 48px;
+  }
+  .navbar a {
+    height: 48px;
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .nav-menu {
+    margin-left: 0rem;
+  }
+}

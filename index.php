@@ -2,15 +2,18 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <section>
-    <?php if (!isUserLoggedIn()) : ?>
-        <h1>Welcome to <?= $config['title']; ?></h1>
-        <p>A clean, simple space to organize all of your tasks and to do-lists.</p>
-    <?php endif; ?>
-
-    <?php if (isUserLoggedIn()) : ?>
-        <h1>Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>!</h1>
-        <p>This is your Wunderlist. Scroll around to see all of your tasks and lists.</p>
-    <?php endif; ?>
+    <div class="public-intro">
+        <?php if (!isUserLoggedIn()) : ?>
+            <h1>Welcome to <?= $config['title']; ?></h1>
+            <p>A clean, simple space to organize all of your tasks and to do-lists.</p>
+        <?php endif; ?>
+    </div>
+    <div class="private-intro">
+        <?php if (isUserLoggedIn()) : ?>
+            <h1>Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>!</h1>
+            <p>This is your Wunderlist. Scroll around to see all of your tasks and lists.</p>
+        <?php endif; ?>
+    </div>
 </section>
 <section>
     <?php if (isUserLoggedIn()) : ?>
