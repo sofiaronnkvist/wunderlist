@@ -72,6 +72,36 @@ unfoldButton.forEach((button) => {
   });
 });
 
+// Unfold today's tasks //
+
+const unfoldTodayButton = document.querySelectorAll('.task-button-today');
+const taskTodayUnfold = document.querySelectorAll('.task-unfold-today');
+
+unfoldTodayButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    taskTodayUnfold.forEach((task) => {
+      if (button.getAttribute('data-id') === task.getAttribute('data-id')) {
+        task.classList.toggle('closed');
+      }
+    });
+  });
+});
+
+// Unfold tasks in lists //
+
+const unfoldTaskInListButton = document.querySelectorAll('.task-button-list');
+const taskInListUnfold = document.querySelectorAll('.task-list-unfold');
+
+unfoldTaskInListButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    taskInListUnfold.forEach((task) => {
+      if (button.getAttribute('data-id') === task.getAttribute('data-id')) {
+        task.classList.toggle('closed');
+      }
+    });
+  });
+});
+
 // Unfold lists //
 
 const listButton = document.querySelectorAll('.list-button');
@@ -112,6 +142,36 @@ editTaskTodayButton.forEach((button) => {
     editTaskTodayUnfold.forEach((task) => {
       if (button.getAttribute('data-id') === task.getAttribute('data-id')) {
         task.classList.toggle('closed');
+      }
+    });
+  });
+});
+
+// Edit task in list //
+
+const editTaskListButton = document.querySelectorAll('.edit-task-in-list');
+const editTaskListUnfold = document.querySelectorAll('.task-edit-in-list');
+
+editTaskListButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    editTaskListUnfold.forEach((task) => {
+      if (button.getAttribute('data-id') === task.getAttribute('data-id')) {
+        task.classList.toggle('closed');
+      }
+    });
+  });
+});
+
+// Edit list //
+
+const editListButton = document.querySelectorAll('.edit-list-button');
+const editListUnfold = document.querySelectorAll('.edit-list');
+
+editListButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    editListUnfold.forEach((list) => {
+      if (button.getAttribute('data-id') === list.getAttribute('data-id')) {
+        list.classList.toggle('closed');
       }
     });
   });

@@ -1,0 +1,33 @@
+.footer-top {
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  border-top: 1px solid #000;
+  padding: 20px;
+}
+
+.footer-bottom {
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-top: 1px solid #000;
+  padding: 20px;
+}
+
+.icon {
+  font-family: 'Rock Salt', cursive;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  color: rgb(179, 177, 177);
+}

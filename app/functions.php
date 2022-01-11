@@ -13,18 +13,6 @@ function isUserLoggedIn(): bool
     return isset($_SESSION['user']);
 }
 
-// if (errorMessages());
-
-// function checkEmail($database, $email): array
-// {
-//     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
-//     $statement->bindParam(':email', $email, PDO::PARAM_STR);
-//     $statement->execute();
-
-//     $user = $statement->fetch(PDO::FETCH_ASSOC);
-//     return $user;
-// }
-
 function getListName($database, $taskId): array
 {
     $statement = $database->prepare('SELECT list_title FROM lists INNER JOIN tasks ON tasks.list_id = lists.id WHERE tasks.id = :id');
@@ -35,7 +23,6 @@ function getListName($database, $taskId): array
 
     return $listTitle;
 }
-
 
 function getLists($database): array
 {
