@@ -13,7 +13,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     }
 
     $username = trim($_POST['username']);
-    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+    $email = trim(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     try {
