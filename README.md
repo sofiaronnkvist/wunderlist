@@ -1,16 +1,16 @@
-INSERT MANDATORY GIF
+<img src="https://media.giphy.com/media/tJMVcTfzDdL1pOGxlk/giphy.gif" width="100%">
 
-# Whatodo
+# Wunderlist
 
-Text about the project and why it exists. This would also be a great place to link the project online.
+My Wunderlist application where you can create to-do lists and tasks. You can also see it [here](http://sofiaronnkvist.com/).
 
 # Installation
 
-Add the installation instructions.
+Clone the repo to your own computer and fire up a local server.
 
 # Code Review
 
-Code review written by [Jane Doh](https://github.com/username).
+Code review written by [Emma Hansson](https://github.com/h-emma).
 
 1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
 2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
@@ -27,5 +27,5 @@ Code review written by [Jane Doh](https://github.com/username).
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
+1. [Nema Vinkeloe Uuskyla](https://github.com/patrosk)
+2. [Amanda Hultén](https://github.com/amandahulten)
