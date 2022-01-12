@@ -15,25 +15,25 @@
     <?php endif; ?>
 
     <form action="app/users/register.php" method="post">
-        <div class="mb-3">
+        <div>
             <label for="username">Username</label>
             <input class="form-control" type="username" name="username" id="username" placeholder="Wunderlist" required>
             <small class="form-text">Please pick a username.</small>
         </div>
 
-        <div class="mb-3">
+        <div>
             <label for="email">Email</label>
             <input class="form-control" type="email" name="email" id="email" placeholder="hello@wunderlist.com" required>
             <small class="form-text">Please provide your email address.</small>
         </div>
 
-        <div class="mb-3">
+        <div>
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" required>
             <small class="form-text">Please choose a password.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit">Register</button>
     </form>
 </article>
 <article class="about-container">
