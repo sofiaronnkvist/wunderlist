@@ -5,6 +5,11 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
+    if (strlen($_POST['password']) < 16) {
+        $_SESSION['errors'][] = 'The password needs to be 16 charachters or longer.';
+        redirect('/profile.php');
+    }
+
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $id = $_SESSION['user']['id'];

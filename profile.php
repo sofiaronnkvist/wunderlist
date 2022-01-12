@@ -29,6 +29,14 @@
         </form>
     </div>
     <div class="change-user">
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <div>
+                    <?= $error; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']) ?>
+        <?php endif; ?>
         <form action="app/users/profile.php" method="post">
             <div class="mb-3">
                 <label for="email">Email:</label>
