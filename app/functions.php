@@ -77,7 +77,7 @@ function tasksInList($database): array
 
 function isChecked($task): bool
 {
-    if ($task['completed_at'] === NULL) {
+    if ($task['completed_at'] === null) {
         return false;
     } else {
         return true;
