@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<article>
+<article class="register-container">
 
     <h1>Register</h1>
 
@@ -36,5 +36,12 @@
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </article>
+<article class="about-container">
+    <h2>Why use a to-do list?</h2>
+    <p>By keeping a list of things to do, you will get the easy gratification of checking things off when you’ve done them. Grouping them in lists also makes it easy to get an overview!</p>
+</article>
+<div class="about-image-container">
+    <img class="about-image" src="/assets/images/flower.png" alt="Flower.">
+</div>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

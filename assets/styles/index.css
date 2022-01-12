@@ -68,7 +68,6 @@
 
 .add-list {
   width: 100vw;
-  border-bottom: 1px solid #000;
   padding: 20px;
 }
 
@@ -84,4 +83,14 @@
 
 .closed {
   display: none;
+}
+
+.login-box {
+  width: 100vw;
+  border-bottom: 1px solid #000;
+  padding: 20px;
+  text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

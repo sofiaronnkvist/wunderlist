@@ -2,6 +2,7 @@
 
 .nav-logo {
   font-family: 'Rock Salt', cursive;
+  font-size: 24px;
 }
 
 nav li {
@@ -58,7 +59,8 @@ nav a {
   font-size: 18px;
   font-weight: 500;
   color: #000;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 300;
 }
 
 .nav-link:hover {

@@ -15,6 +15,10 @@
   font-weight: 300;
 }
 
+body {
+  min-height: 100vh;
+}
+
 /* Edit tasks */
 
 /* .edit-task {

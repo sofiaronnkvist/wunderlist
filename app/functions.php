@@ -15,8 +15,10 @@ function isUserLoggedIn(): bool
 
 function getListName($database, $taskId): array
 {
-    $statement = $database->prepare('SELECT list_title FROM lists INNER JOIN tasks ON tasks.list_id = lists.id WHERE tasks.id = :id');
+    $userId = $_SESSION['user']['id'];
+    $statement = $database->prepare('SELECT list_title FROM lists INNER JOIN tasks ON tasks.list_id = lists.id WHERE tasks.id = :id AND tasks.user_id = :user_id');
     $statement->bindParam(':id', $taskId, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $statement->execute();
 
     $listTitle = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +29,10 @@ function getListName($database, $taskId): array
 function getLists($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM lists WHERE user_id = $userId");
+    $statement = $database->prepare("SELECT * FROM lists WHERE user_id = :user_id");
+    $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+
     $lists = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $lists;
@@ -36,7 +41,10 @@ function getLists($database): array
 function getTasks($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId ORDER BY completed_at ASC");
+    $statement = $database->prepare("SELECT * FROM tasks WHERE user_id = :user_id ORDER BY completed_at ASC");
+    $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $tasks;
@@ -45,7 +53,10 @@ function getTasks($database): array
 function getTodaysTasks($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM tasks WHERE user_id = $userId AND deadline_at = DATE() ORDER BY completed_at ASC");
+    $statement = $database->prepare("SELECT * FROM tasks WHERE user_id = :user_id AND deadline_at = DATE() ORDER BY completed_at ASC");
+    $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+
     $todaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $todaysTasks;
@@ -54,8 +65,11 @@ function getTodaysTasks($database): array
 function tasksInList($database): array
 {
     $userId = $_SESSION['user']['id'];
-    $statement = $database->query("SELECT * FROM tasks INNER JOIN lists
-    ON tasks.list_id = lists.id WHERE tasks.user_id = $userId ORDER BY tasks.completed_at ASC");
+    $statement = $database->prepare("SELECT * FROM tasks INNER JOIN lists
+    ON tasks.list_id = lists.id WHERE tasks.user_id = :user_id ORDER BY tasks.completed_at ASC");
+    $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $tasks;

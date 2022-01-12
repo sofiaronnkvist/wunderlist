@@ -1,13 +1,22 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<?php $lists = getLists($database); ?>
-
 <section>
     <?php if (!isUserLoggedIn()) : ?>
         <div class="public-intro">
             <h1>Welcome to <?= $config['title']; ?></h1>
             <p>A clean, simple space to organize all of your tasks and to do-lists.</p>
+        </div>
+        <div class="login-box">
+            <a class="link" href="/login.php">Login</a>
+            <a class="link" href="/register.php">Register</a>
+        </div>
+        <article class="about-container">
+            <h2>Why use a to-do list?</h2>
+            <p>By keeping a list of things to do, you will get the easy gratification of checking things off when you’ve done them. Grouping them in lists also makes it easy to get an overview!</p>
+        </article>
+        <div class="about-image-container">
+            <img class="about-image" src="/assets/images/flower.png" alt="Flower.">
         </div>
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
@@ -19,6 +28,7 @@
 </section>
 <section>
     <?php if (isUserLoggedIn()) : ?>
+        <?php $lists = getLists($database); ?>
         <div class="all-tasks-container">
             <div class="tasks-container">
                 <h2>All tasks</h2>
@@ -163,97 +173,101 @@
                 <button type="submit" class="">Save</button>
             </form>
         </div>
+    <?php endif; ?>
 </section>
 <section>
-    <div class="lists-container">
-        <h2>All lists</h2>
-        <ul>
-            <?php foreach (getLists($database) as $list) : ?>
-                <div class="list-box">
-                    <div class="list-header">
-                        <li><?= htmlspecialchars($list['list_title']); ?></li>
-                        <button class="list-button" data-id="<?= $list['id'] ?>">+</button>
-                    </div>
-                    <form action="/app/lists/delete.php" method="post">
-                        <button name="delete-list" type="submit" class="" value="<?= $list['id'] ?>">Delete</button>
-                    </form>
-                    <button name="edit-list" data-id="<?= $list['id'] ?>" type="submit" class="edit-list-button">Edit</button>
-                    <div class="edit-list closed" data-id="<?= $list['id'] ?>">
-                        <form action="app/lists/update.php" method="post">
-                            <div class="">
-                                <label for="list-title">Change title</label>
-                                <input class="form-control" type="list-title" name="list-title" id="list-title" placeholder="<?= $list['list_title'] ?>" required>
-                            </div>
-                            <button name="update-list" type="submit" class="" value="<?= $list['id'] ?>">Save</button>
+    <?php if (isUserLoggedIn()) : ?>
+        <div class="lists-container">
+            <h2>All lists</h2>
+            <ul>
+                <?php foreach (getLists($database) as $list) : ?>
+                    <div class="list-box">
+                        <div class="list-header">
+                            <li><?= htmlspecialchars($list['list_title']); ?></li>
+                            <button class="list-button" data-id="<?= $list['id'] ?>">+</button>
+                        </div>
+                        <form action="/app/lists/delete.php" method="post">
+                            <button name="delete-list" type="submit" class="" value="<?= $list['id'] ?>">Delete</button>
                         </form>
-                    </div>
-                    <div class="list-unfold closed" data-id="<?= $list['id'] ?>">
-                        <ul>
-                            <?php foreach (tasksInList($database) as $task) : ?>
-                                <?php if ($list['id'] === $task['list_id']) : ?>
-                                    <div class="task-box-lists">
-                                        <div class="task-header">
-                                            <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" data-set="<?= isChecked($task) ?>">
-                                            <li><?= htmlspecialchars($task['task_title']); ?></li>
-                                            <button class="task-button-list" data-id="<?= $task['id'] ?>">+</button>
-                                        </div>
-                                        <div class="task-list-unfold closed" data-id="<?= $task['id'] ?>">
-                                            <ul>
-                                                <li><?= htmlspecialchars($task['task_description']) ?></li>
-                                                <p>Deadline: <?= htmlspecialchars($task['deadline_at']); ?></p>
-                                                <p>List: <?= htmlspecialchars($list['list_title']) ?></p>
-                                                <form action="/app/lists/task-delete.php" method="post">
-                                                    <button name="delete-task-list" type="submit" class="" value="<?= $task['id'] ?>">Delete</button>
+                        <button name="edit-list" data-id="<?= $list['id'] ?>" type="submit" class="edit-list-button">Edit</button>
+                        <div class="edit-list closed" data-id="<?= $list['id'] ?>">
+                            <form action="app/lists/update.php" method="post">
+                                <div class="">
+                                    <label for="list-title">Change title</label>
+                                    <input class="form-control" type="list-title" name="list-title" id="list-title" placeholder="<?= $list['list_title'] ?>" required>
+                                </div>
+                                <button name="update-list" type="submit" class="" value="<?= $list['id'] ?>">Save</button>
+                            </form>
+                        </div>
+                        <div class="list-unfold closed" data-id="<?= $list['id'] ?>">
+                            <ul>
+                                <?php foreach (tasksInList($database) as $task) : ?>
+                                    <?php if ($list['id'] === $task['list_id']) : ?>
+                                        <div class="task-box-lists">
+                                            <div class="task-header">
+                                                <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" data-set="<?= isChecked($task) ?>">
+                                                <li><?= htmlspecialchars($task['task_title']); ?></li>
+                                                <button class="task-button-list" data-id="<?= $task['id'] ?>">+</button>
+                                            </div>
+                                            <div class="task-list-unfold closed" data-id="<?= $task['id'] ?>">
+                                                <ul>
+                                                    <li><?= htmlspecialchars($task['task_description']) ?></li>
+                                                    <p>Deadline: <?= htmlspecialchars($task['deadline_at']); ?></p>
+                                                    <p>List: <?= htmlspecialchars($list['list_title']) ?></p>
+                                                    <form action="/app/lists/task-delete.php" method="post">
+                                                        <button name="delete-task-list" type="submit" class="" value="<?= $task['id'] ?>">Delete</button>
+                                                    </form>
+                                                    <button name="edit-task" data-id="<?= $task['id'] ?>" type="submit" class="edit-task-in-list">Edit</button>
+                                                </ul>
+                                            </div>
+                                            <div class="task-edit-in-list closed" data-id="<?= $task['id'] ?>">
+                                                <form action="app/tasks/update.php" method="post" class="edit-task">
+                                                    <div class="">
+                                                        <label for="task-title">Change title</label>
+                                                        <input class="form-control" type="task-title" name="task-title" id="task-title" placeholder="<?= $task['task_title'] ?>" required>
+                                                    </div>
+                                                    <div class="">
+                                                        <label for="task-description">Change description</label>
+                                                        <input class="form-control" type="task-description" name="task-description" id="task-description" placeholder="<?= $task['task_description'] ?>" required>
+                                                    </div>
+                                                    <div class="">
+                                                        <label for="task-deadline">Change due date</label>
+                                                        <input class="form-control" type="date" name="task-deadline" id="task-deadline" required>
+                                                    </div>
+                                                    <div class="">
+                                                        <label for="task-list">Change list (if you want to)</label>
+                                                        <select name="task-list" id="task-list">
+                                                            <option value="">Choose...</option>
+                                                            <?php foreach ($lists as $list) : ?>
+                                                                <option value="<?= $list['id']; ?>">
+                                                                    <?= htmlspecialchars($list['list_title']); ?>
+                                                                </option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="" value="<?= $task['id'] ?>">Save</button>
                                                 </form>
-                                                <button name="edit-task" data-id="<?= $task['id'] ?>" type="submit" class="edit-task-in-list">Edit</button>
-                                        </div>
-                                        <div class="task-edit-in-list closed" data-id="<?= $task['id'] ?>">
-                                            <form action="app/tasks/update.php" method="post" class="edit-task">
-                                                <div class="">
-                                                    <label for="task-title">Change title</label>
-                                                    <input class="form-control" type="task-title" name="task-title" id="task-title" placeholder="<?= $task['task_title'] ?>" required>
-                                                </div>
-                                                <div class="">
-                                                    <label for="task-description">Change description</label>
-                                                    <input class="form-control" type="task-description" name="task-description" id="task-description" placeholder="<?= $task['task_description'] ?>" required>
-                                                </div>
-                                                <div class="">
-                                                    <label for="task-deadline">Change due date</label>
-                                                    <input class="form-control" type="date" name="task-deadline" id="task-deadline" required>
-                                                </div>
-                                                <div class="">
-                                                    <label for="task-list">Change list (if you want to)</label>
-                                                    <select name="task-list" id="task-list">
-                                                        <option value="">Choose...</option>
-                                                        <?php foreach ($lists as $list) : ?>
-                                                            <option value="<?= $list['id']; ?>">
-                                                                <?= htmlspecialchars($list['list_title']); ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="" value="<?= $task['id'] ?>">Save</button>
-                                            </form>
+                                            </div>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="add-list">
+            <h3>Add a list</h3>
+            <form action="app/lists/store.php" method="post">
+                <div class="mb-3">
+                    <label for="list-title">Add a title</label>
+                    <input class="form-control" type="list-title" name="list-title" id="list-title" placeholder="Title" required>
                 </div>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-    <div class="add-list">
-        <h3>Add a list</h3>
-        <form action="app/lists/store.php" method="post">
-            <div class="mb-3">
-                <label for="list-title">Add a title</label>
-                <input class="form-control" type="list-title" name="list-title" id="list-title" placeholder="Title" required>
-            </div>
-            <button type="submit" class="">Save</button>
-        </form>
-    </div>
-<?php endif; ?>
+                <button type="submit" class="">Save</button>
+            </form>
+        </div>
+    <?php endif; ?>
 </section>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
     if (strlen($_POST['password']) < 16) {
-        $_SESSION['errors'][] = 'The password needs to be 16 charachters or longer.';
+        $_SESSION['errors'][] = 'The password needs to be 16 characters or longer.';
         redirect('/profile.php');
     }
 
@@ -21,7 +21,7 @@ if (isset($_POST['email'], $_POST['password'])) {
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     } catch (Exception $e) {
-        $_SESSION['messages']['registration'];
+        $_SESSION['errors'][] = 'The email is already in use.';
         redirect('/profile.php');
     }
 

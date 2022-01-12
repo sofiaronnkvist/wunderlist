@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/assets/styles/about.css">
     <link rel="stylesheet" href="/assets/styles/footer.css">
     <link rel="stylesheet" href="/assets/styles/profile.css">
+    <link rel="stylesheet" href="/assets/styles/login.css">
+    <link rel="stylesheet" href="/assets/styles/register.css">
 </head>
 
 <body>
