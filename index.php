@@ -135,7 +135,7 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <button type="submit" class="" value="<?= $task['id'] ?>">Save</button>
+                                    <button name="update-task" type="submit" value="<?= $today['id'] ?>">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -215,7 +215,8 @@
                                                     <p>Deadline: <?= htmlspecialchars($task['deadline_at']); ?></p>
                                                     <p>List: <?= htmlspecialchars($list['list_title']) ?></p>
                                                     <form action="/app/lists/task-delete.php" method="post">
-                                                        <button name="delete-task-list" type="submit" class="" value="<?= $task['id'] ?>">Delete</button>
+                                                        <input type="hidden" name="id" value="<?= $task['id'] ?>">
+                                                        <button type="submit">Delete</button>
                                                     </form>
                                                     <button name="edit-task" data-id="<?= $task['id'] ?>" type="submit" class="edit-task-in-list">Edit</button>
                                                 </ul>
@@ -245,7 +246,7 @@
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
-                                                    <button type="submit" class="" value="<?= $task['id'] ?>">Save</button>
+                                                    <button name="update-task" type="submit" value="<?= $task['id'] ?>">Save</button>
                                                 </form>
                                             </div>
                                         </div>
