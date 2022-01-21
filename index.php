@@ -201,7 +201,8 @@
                         </div>
                         <div class="list-unfold closed" data-id="<?= $list['id'] ?>">
                             <ul>
-                                <?php foreach (tasksInList($database, $list['id']) as $task) : ?> <div class="task-box-lists">
+                                <?php foreach (tasksInList($database, $list['id']) as $task) : ?>
+                                    <div class="task-box-lists">
                                         <div class="task-header">
                                             <input type="checkbox" name="completed" id="completed" class="checkbox" data-id="<?= $task['id'] ?>" data-set="<?= isChecked($task) ?>">
                                             <li><?= htmlspecialchars($task['task_title']); ?></li>
