@@ -85,3 +85,43 @@ function isChecked($task): bool
         return true;
     }
 }
+
+//Send welcome email
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+function sendRegistrationWelcomeEmail()
+{
+
+    require __DIR__ . '/../email-send/src/Exception.php';
+    require __DIR__ . '/../email-send/src/PHPMailer.php';
+    require __DIR__ . '/../email-send/src/SMTP.php';
+
+
+    $mail = new PHPMailer();
+    $mail->isSMTP();
+    $mail->Host = 'smtp.mailtrap.io';
+    $mail->SMTPAuth = true;
+    $mail->Username = '83f6297daac908';
+    $mail->Password = '8dfdf4164faaf1';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 2525;
+
+    $mail->setFrom('info@mailtrap.io', 'Mailtrap');
+    $mail->addReplyTo('info@mailtrap.io', 'Mailtrap');
+    $mail->addAddress('recipient1@mailtrap.io', 'Susanne');
+    $mail->addCC('cc1@example.com', 'Elena');
+    $mail->addBCC('bcc1@example.com', 'Alex');
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
+    $mail->Body = '<h1> Welcome new member! Your account was successfully created. Start a new chapter as an organized kind of person.<b>Good luck!</b> </h1>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    if ($mail->send()) {
+        echo 'Message has been sent';
+    } else {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    }
+}

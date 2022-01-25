@@ -5,7 +5,6 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 // In this file we see if a task is completed.
-
 if (isset($_POST['completed'])) {
     $taskId = $_POST['completed'];
 

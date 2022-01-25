@@ -37,6 +37,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
         unset($user['password']);
         $_SESSION['user'] = $user;
     }
+    //From functions.php, send welcome email
+    sendRegistrationWelcomeEmail();
 }
+
+
 
 redirect('/');
