@@ -199,6 +199,10 @@
                                 <button name="update-list" type="submit" class="" value="<?= $list['id'] ?>">Save</button>
                             </form>
                         </div>
+                        <form action="app/tasks/completeAll.php" method="POST">
+                            <input type="hidden" name="completeAll" value="<?= $list['id']; ?> ">
+                            <button type="submit" class="complete-all-tasks">Complete all tasks</button>
+                        </form>
                         <div class="list-unfold closed" data-id="<?= $list['id'] ?>">
                             <ul>
                                 <?php foreach (tasksInList($database, $list['id']) as $task) : ?>
