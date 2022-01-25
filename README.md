@@ -4,6 +4,12 @@
 
 My Wunderlist application where you can create to-do lists and tasks. You can also see it [here](http://sofiaronnkvist.com/).
 
+# Extra features
+
+As a user I'm able to remove a task from a list.
+
+As a user I'm able to delete my account along with all tasks and lists.
+
 # Installation
 
 Clone the repo to your own computer and fire up a local server.
@@ -30,3 +36,12 @@ Tested by the following people:
 
 1. [Nema Vinkeloe Uuskyla](https://github.com/patrosk)
 2. [Amanda Hultén](https://github.com/amandahulten)
+
+# Wunderlist+
+
+[Jennifer Andersson](https://github.com/JennAnd) added:
+
+1. Ability to mark all tasks in a list as completed.
+2. Ability to get a welcome email after registration.
+
+See the Pull requests [here!](https://github.com/sofiaronnkvist/wunderlist/pull/3)
